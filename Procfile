@@ -1,0 +1,1 @@
+web: gunicorn svcpa.wsgi --log-file -
