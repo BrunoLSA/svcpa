@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.idea
+.svcpa
+*.sqlite3
+*pyc
+__pycache__
+staticfiles
