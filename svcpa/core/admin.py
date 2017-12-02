@@ -3,7 +3,7 @@ from svcpa.cadastro.models import Member
 
 
 class MemberModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'cpf', 'city', 'state', 'created_at')
+    list_display = ('name', 'cpf', 'city', 'state', 'created_at', 'paid')
     date_hierarchy = 'created_at'
     search_fields = ('name', 'email', 'phone', 'cpf', 'neighborhood', 'city', 'state')
     list_filter = ('city',)
