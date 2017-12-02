@@ -15,7 +15,7 @@ class Member(models.Model):
     city = models.CharField('cidade', max_length=20)
     state = models.CharField('estado', max_length=2)
     cep = models.CharField('CEP', max_length=8, validators=[validate_cep], blank=True)
-    created_at = models.DateTimeField('cadastrado em', auto_now_add=True)
+    created_at = models.DateTimeField('cadastrado em', auto_now_add=True, null=True)
     paid = models.DateField('vencimento da anualidade', default=None, null=True, blank=True)
 
     def __str__(self):
