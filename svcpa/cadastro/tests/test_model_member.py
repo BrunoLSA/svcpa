@@ -16,6 +16,7 @@ class MemberModelTest(TestCase):
             city='Manaus',
             state='AM',
             cep='69060-000',
+            payment_due='2018-01-30'
         )
 
         self.obj.save()

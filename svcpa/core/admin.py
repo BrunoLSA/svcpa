@@ -3,7 +3,7 @@ from svcpa.cadastro.models import Member
 
 
 class MemberModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'cpf', 'city', 'state', 'since', 'paid')
+    list_display = ('name', 'cpf', 'city', 'state', 'member_since', 'payment_due')
     search_fields = ('name', 'email', 'phone', 'cpf', 'neighborhood', 'city', 'state')
     list_filter = ('city',)
     fields = ('name',
@@ -11,13 +11,7 @@ class MemberModelAdmin(admin.ModelAdmin):
               ('email', 'phone'),
               ('address', 'neighborhood'),
               ('city', 'state', 'cep'),
-              'paid')
+              ('member_since', 'payment_due'))
 
-    def since(self, obj):
-        return '{:02}/{:02}/{:4}'.format(obj.created_at.day,
-                                         obj.created_at.month,
-                                         obj.created_at.year)
-
-    since.short_description = 'cadastrado em'
 
 admin.site.register(Member, MemberModelAdmin)
