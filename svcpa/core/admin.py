@@ -1,8 +1,13 @@
 from django.contrib import admin
-from svcpa.cadastro.models import Member
+from svcpa.cadastro.models import Member, Payment
 
+
+class PaymentInLine(admin.TabularInline):
+    model = Payment
+    extra = 1
 
 class MemberModelAdmin(admin.ModelAdmin):
+    inlines = [PaymentInLine,]
     list_display = ('name', 'cpf', 'city', 'state', 'member_since', 'payment_due')
     search_fields = ('name', 'email', 'phone', 'cpf', 'neighborhood', 'city', 'state')
     list_filter = ('city',)

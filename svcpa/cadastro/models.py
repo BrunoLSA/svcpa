@@ -1,5 +1,6 @@
 from django.db import models
 
+from svcpa.cadastro.managers import KindQuerySet
 from svcpa.cadastro.validators import validate_cpf, validate_cep
 
 
@@ -24,3 +25,26 @@ class Member(models.Model):
     class Meta:
         verbose_name = 'sócio'
         verbose_name_plural = 'sócios'
+
+
+class Payment(models.Model):
+    MONEY = 'M'
+    TRANSFER = 'T'
+    CHECK = 'C'
+
+    KINDS = (
+        (MONEY, 'dinheiro'),
+        (TRANSFER, 'transferência bancária'),
+        (CHECK, 'cheque')
+    )
+
+    member = models.ForeignKey('Member', verbose_name='sócio')
+    kind = models.CharField('tipo', max_length=1, choices=KINDS)
+    date = models.DateField('data')
+    value = models.FloatField('valor')
+
+    objects = KindQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = 'pagamento'
+        verbose_name_plural = 'pagamentos'
