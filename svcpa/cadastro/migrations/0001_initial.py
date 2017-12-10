@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('state', models.CharField(max_length=2, verbose_name='estado')),
                 ('cep', models.CharField(blank=True, max_length=8, validators=[svcpa.cadastro.validators.validate_cep], verbose_name='CEP')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='cadastrado em')),
-                ('paid', models.DateField(blank=True, default=None, null=True, verbose_name='vencimento da anualidade')),
+                ('paid', models.DateField(blank=True, default=None, null=True, verbose_name='vencimento da anuidade')),
             ],
             options={
                 'verbose_name': 'sócio',
