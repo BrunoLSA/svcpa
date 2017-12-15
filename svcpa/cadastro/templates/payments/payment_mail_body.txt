@@ -1,6 +1,6 @@
 Pagamento da SVCPA confirmado!
 
-Caro(a) {{ name }}! A sua contribuição se reverte para o bem comum da nossa entidade.\n
+Caro(a) {{ name }}! A sua contribuição se reverte para o bem comum da nossa entidade.
 Grato pela confiança. Juntos somos mais!
 
 Sócio: {{ full_name }}
