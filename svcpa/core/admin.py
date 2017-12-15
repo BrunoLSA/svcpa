@@ -1,10 +1,12 @@
 from django.contrib import admin
+
 from svcpa.cadastro.models import Member, Payment
 
 
 class PaymentInLine(admin.TabularInline):
     model = Payment
     extra = 1
+
 
 class MemberModelAdmin(admin.ModelAdmin):
     inlines = [PaymentInLine,]

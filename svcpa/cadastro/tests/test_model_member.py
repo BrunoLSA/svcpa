@@ -4,7 +4,7 @@ from svcpa.cadastro.models import Member
 
 class MemberModelTest(TestCase):
     def setUp(self):
-        self.obj = Member(
+        self.member = Member(
             name='Bruno Santana',
             date_of_birth='1982-09-28',
             rg='520449',
@@ -20,14 +20,14 @@ class MemberModelTest(TestCase):
             payment_due='2018-01-30'
         )
 
-        self.obj.save()
+        self.member.save()
 
     def test_create(self):
         self.assertTrue(Member.objects.exists())
 
     def test_str(self):
         """Must return the name of the object"""
-        self.assertEqual('Bruno Santana', str(self.obj))
+        self.assertEqual('Bruno Santana', str(self.member))
 
     def test_email_blank(self):
         field = Member._meta.get_field('email')

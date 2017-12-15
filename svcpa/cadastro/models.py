@@ -1,4 +1,6 @@
+from django.core import mail
 from django.db import models
+from django.template.loader import render_to_string
 
 from svcpa.cadastro.managers import KindQuerySet
 from svcpa.cadastro.validators import validate_cpf, validate_cep
@@ -48,3 +50,23 @@ class Payment(models.Model):
     class Meta:
         verbose_name = 'pagamento'
         verbose_name_plural = 'pagamentos'
+
+    def save(self, *args, **kwargs):
+        super(Payment, self).save(*args, **kwargs)
+
+        first_name = self.member.name.split()[0]
+        last_name = self.member.name.split()[-1]
+        name = ' '.join([first_name, last_name])
+
+        context = dict(name=name, full_name = self.member.name,
+                       cpf=self.member.cpf, date=self.date)
+
+        body = render_to_string('payments/payment_mail_body.txt',
+                                context)
+
+        mail.send_mail(
+            'Confirmação de pagamento',
+            body,
+            'svcpa@hotmail.com',
+            ['svcpa@hotmail.com', self.member.email]
+        )
