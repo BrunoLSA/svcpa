@@ -43,7 +43,8 @@ class Payment(models.Model):
     member = models.ForeignKey('Member', verbose_name='sócio')
     kind = models.CharField('tipo', max_length=1, choices=KINDS)
     date = models.DateField('data')
-    value = models.FloatField('valor')
+    value = models.DecimalField('valor', max_digits=10, decimal_places=2)
+    receipt = models.IntegerField('recibo nº')
 
     objects = KindQuerySet.as_manager()
 
@@ -59,7 +60,8 @@ class Payment(models.Model):
         name = ' '.join([first_name, last_name])
 
         context = dict(name=name, full_name = self.member.name,
-                       cpf=self.member.cpf, date=self.date)
+                       cpf=self.member.cpf, date=self.date,
+                       value=self.value, receipt=self.receipt)
 
         body = render_to_string('payments/payment_mail_body.txt',
                                 context)

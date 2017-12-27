@@ -27,7 +27,8 @@ class PaymentSendMail(TestCase):
             member = self.member,
             kind = 'M',
             date = '2017-12-10',
-            value = 100.00
+            value = '100.00',
+            receipt = '001',
         )
 
     def test_send_payment_mail(self):
@@ -44,12 +45,12 @@ class PaymentSendMail(TestCase):
         expect = 'svcpa@hotmail.com'
         self.assertEqual(expect, email.from_email)
 
-    def test_payment_mai_to(self):
+    def test_payment_mail_to(self):
         email = mail.outbox[0]
         expect = ['svcpa@hotmail.com', 'santanasta@gmail.com']
         self.assertEqual(expect, email.to)
 
-    def test_payment_mai_body(self):
+    def test_payment_mail_body(self):
         email = mail.outbox[0]
 
         self.assertIn('Bruno Santana', email.body)

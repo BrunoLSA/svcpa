@@ -19,20 +19,24 @@ class PaymentModelTest(TestCase):
 
     def test_payment_money(self):
         payment = Payment.objects.create(member=self.member, kind=Payment.MONEY,
-                                        value='100.00', date='2017-12-02')
+                                        value='100.00', date='2017-12-02',
+                                        receipt='001')
         self.assertTrue(Payment.objects.exists())
 
     def test_payment_transfer(self):
         payment = Payment.objects.create(member=self.member, kind=Payment.TRANSFER,
-                                         value='100.00', date='2017-12-02')
+                                         value='100.00', date='2017-12-02',
+                                         receipt='001')
         self.assertTrue(Payment.objects.exists())
 
     def test_payment_check(self):
         payment = Payment.objects.create(member=self.member, kind=Payment.CHECK,
-                                         value='100.00', date='2017-12-02')
+                                         value='100.00', date='2017-12-02',
+                                         receipt='001')
         self.assertTrue(Payment.objects.exists())
 
     def test_choices(self):
         """Payment kind should be limited to M, T or C"""
-        payment = Payment(member=self.member, kind='A', value='100.00', date='2017-12-02')
+        payment = Payment(member=self.member, kind='A', value='100.00',
+                          date='2017-12-02', receipt='001')
         self.assertRaises(ValidationError, payment.full_clean)
