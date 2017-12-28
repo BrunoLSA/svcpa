@@ -6,7 +6,7 @@ Grato pela confiança. Juntos somos mais!
 Sócio: {{ full_name }}
 CPF: {{ cpf }}
 Data do pagamento: {{ date }}
-Valor do pagamento: {{ value }}
+Valor do pagamento: R$ {{ value|floatformat:2 }}
 Número do recibo: {{ receipt }}
 
 

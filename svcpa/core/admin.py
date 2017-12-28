@@ -22,3 +22,6 @@ class MemberModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Member, MemberModelAdmin)
+admin.site.site_header = 'SVCPA'
+admin.site.index_title = 'SVCPA'
+admin.site.site_title = 'Diretoria SVCPA'
