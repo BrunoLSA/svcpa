@@ -45,6 +45,7 @@ class Payment(models.Model):
     date = models.DateField('data')
     value = models.DecimalField('valor', max_digits=10, decimal_places=2)
     receipt = models.IntegerField('recibo nº')
+    message_email = models.BooleanField('enviar e-mail?', default=True)
 
     objects = KindQuerySet.as_manager()
 
@@ -55,20 +56,21 @@ class Payment(models.Model):
     def save(self, *args, **kwargs):
         super(Payment, self).save(*args, **kwargs)
 
-        first_name = self.member.name.split()[0]
-        last_name = self.member.name.split()[-1]
-        name = ' '.join([first_name, last_name])
+        if self.message_email:
+            first_name = self.member.name.split()[0]
+            last_name = self.member.name.split()[-1]
+            name = ' '.join([first_name, last_name])
 
-        context = dict(name=name, full_name = self.member.name,
-                       cpf=self.member.cpf, date=self.date,
-                       value=self.value, receipt=self.receipt)
+            context = dict(name=name, full_name = self.member.name,
+                           cpf=self.member.cpf, date=self.date,
+                           value=self.value, receipt=self.receipt)
 
-        body = render_to_string('payments/payment_mail_body.txt',
-                                context)
+            body = render_to_string('payments/payment_mail_body.txt',
+                                    context)
 
-        mail.send_mail(
-            'Confirmação de pagamento',
-            body,
-            'svcpa@hotmail.com',
-            ['svcpa@hotmail.com', self.member.email]
-        )
+            mail.send_mail(
+                'Confirmação de pagamento',
+                body,
+                'svcpa@hotmail.com',
+                ['svcpa@hotmail.com', self.member.email]
+            )
