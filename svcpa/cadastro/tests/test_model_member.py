@@ -17,6 +17,7 @@ class MemberModelTest(TestCase):
             state='AM',
             cep='69060-000',
             member_since='2005-04-10',
+            member_number = 1234,
             payment_due='2018-01-30'
         )
 
@@ -41,7 +42,7 @@ class MemberModelTest(TestCase):
         field = Member._meta.get_field('address')
         self.assertTrue(field.blank)
 
-    def test_mneighborhood_blank(self):
+    def test_neighborhood_blank(self):
         field = Member._meta.get_field('neighborhood')
         self.assertTrue(field.blank)
 

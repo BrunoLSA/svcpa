@@ -18,7 +18,7 @@ class MemberModelAdmin(admin.ModelAdmin):
               ('email', 'phone'),
               ('address', 'neighborhood'),
               ('city', 'state', 'cep'),
-              ('member_since', 'payment_due'))
+              ('member_since', 'member_number', 'payment_due'))
     ordering = ('name',)
 
 

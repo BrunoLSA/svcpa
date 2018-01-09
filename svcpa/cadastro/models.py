@@ -19,6 +19,7 @@ class Member(models.Model):
     state = models.CharField('estado', max_length=2)
     cep = models.CharField('CEP', max_length=8, validators=[validate_cep], blank=True)
     member_since = models.DateField('data de admissão')
+    member_number = models.IntegerField('sócio número')
     payment_due = models.DateField('vencimento da anuidade', default=None, null=True, blank=True)
 
     def __str__(self):

@@ -15,6 +15,7 @@ class PaymentModelTest(TestCase):
             city='Manaus',
             state='AM',
             member_since='2005-04-10',
+            member_number=1234,
             payment_due='2018-01-30'
         )
         self.mail = mail.outbox

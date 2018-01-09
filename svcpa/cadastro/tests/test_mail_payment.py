@@ -19,6 +19,7 @@ class PaymentSendMail(TestCase):
             state='AM',
             cep='69060-000',
             member_since='2005-04-10',
+            member_number=1234,
             payment_due='2018-01-30'
         )
         self.member.save()
